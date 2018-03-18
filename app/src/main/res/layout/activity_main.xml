@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="xin.dspwljsyxgs.www.timer_new.MainActivity">
-    
+    android:background="@drawable/bcgnew"
+    tools:context="xin.dspwljsyxgs.www.timer_new.MainActivity"
+    android:theme="@style/AppTheme">
     <LinearLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
@@ -20,29 +21,58 @@
 
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/timer"
-            android:text="倒计时"
-            android:layout_gravity="center"
-            android:layout_width="0dp"
+        android:layout_height="50dp"
+        >
+        <RadioGroup
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <Button
-            android:text="叫醒"
-            android:id="@+id/wake_up"
-            android:layout_gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <Button
-            android:text="秒表"
-            android:id="@+id/clock"
-            android:layout_gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:gravity="center">
+            <RadioButton
+                android:drawableLeft="@drawable/bt2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/timer"
+                android:gravity="center"
+                android:background="@drawable/radio"
+                android:text="倒计时"
+                android:checked="true"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textColor="@color/textcolor"/>
+            <RadioButton
+                android:drawableLeft="@drawable/bt1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="叫醒"
+                android:id="@+id/wake_up"
+                android:gravity="center"
+                android:background="@drawable/radio"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textColor="@color/textcolor"/>
+            <RadioButton
+                android:drawableLeft="@drawable/bt3"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="秒表"
+                android:id="@+id/clock"
+                android:background="@drawable/radio"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textColor="@color/textcolor"/>
+        </RadioGroup>
     </LinearLayout>
 
 </LinearLayout>
