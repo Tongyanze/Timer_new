@@ -10,17 +10,32 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/pic_enter"
+        android:src="@drawable/timg"
         android:scaleType="fitXY"/>
-    <TextView
-        android:layout_marginTop="90dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+    <Button
+        android:id="@+id/btn1"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:background="#75454343"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#233f64"
         android:textSize="60sp"
         android:text="Timer"
-        android:gravity="right"
+        android:gravity="left"
         />
 
 </RelativeLayout>

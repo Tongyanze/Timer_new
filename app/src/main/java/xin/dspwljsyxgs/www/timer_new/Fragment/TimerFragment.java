@@ -157,7 +157,7 @@ public class TimerFragment extends Fragment implements View.OnClickListener{
         @Override
 
         public void run() {
-            if (sum == 0){
+            if (sum == 0 && command == 1){
                 if (ok == 1) dialog_text();
                 textView_h.setText("00");
                 textView_m.setText("00");

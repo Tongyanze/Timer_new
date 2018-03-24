@@ -59,6 +59,7 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
         textView_m.setText("00");
         textView_s.setText("00");
         btn1=(Button) view.findViewById(R.id.timer_start);
+        btn2=(Button) view.findViewById(R.id.timer_stop);
         dialog_warn();
         for (int i = 0; i <= 9; ++i) {
             for (int j = 0; j <= 9; ++j) {
@@ -129,7 +130,7 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
         });
 
         btn1.setOnClickListener(this);
-
+        btn2.setOnClickListener(this);
 
         return view;
     }
@@ -139,7 +140,13 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
                 if (command != 1) {
                     sum = h * 3600 + m * 60 + s;
                     command = 1;
-                    handler.postDelayed(runnable, 1000);
+                    handler.postDelayed(runnable, 0);
+                }
+                break;
+            case R.id.timer_stop:
+                if (command !=3){
+                    command=3;
+                    handler.postDelayed(runnable,0);
                 }
                 break;
         }
@@ -152,46 +159,56 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
         public void run() {
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             boolean isScreenOn = pm.isInteractive();
-            while(isScreenOn)
+            if (isScreenOn && command == 1)
             {
+                h = sum / 3600;
+                m = (sum - h * 3600) / 60;
+                s = sum - h * 3600 - m * 60;
+                textView_h.setText(list_h.get(h));
+                textView_m.setText(list_m.get(m));
+                textView_s.setText(list_s.get(s));
                 pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 isScreenOn = pm.isInteractive();
+                handler.postDelayed(this,100);
             }
-            if (sum == 0){
-                if (ok == 1) dialog_text();
-                textView_h.setText("00");
-                textView_m.setText("00");
-                textView_s.setText("00");
-                sp_h.setSelection(0,true);
-                sp_m.setSelection(0,true);
-                sp_s.setSelection(0,true);
-                ok=0;
-                command=0;
-            }
-            if (command == 1) {
-
-                if (sum > 0) {
-                    sum--;
-
-                    h=sum/3600;
-                    m=(sum-h*3600)/60;
-                    s=sum-h*3600-m*60;
-                    textView_h.setText(list_h.get(h));
-                    textView_m.setText(list_m.get(m));
-                    textView_s.setText(list_s.get(s));
-                    handler.postDelayed(this, 1000);
+            else {
+                if (sum == 0 && command == 1) {
+                    if (ok == 1) dialog_text();
+                    textView_h.setText("00");
+                    textView_m.setText("00");
+                    textView_s.setText("00");
+                    sp_h.setSelection(0, true);
+                    sp_m.setSelection(0, true);
+                    sp_s.setSelection(0, true);
+                    ok = 0;
+                    command = 0;
                 }
-            }
-            if (command == 3){
-                sp_h.setSelection(0,true);
-                sp_m.setSelection(0,true);
-                sp_s.setSelection(0,true);
-                sum=0;
-                h=m=s=0;
-                textView_h.setText("00");
-                textView_m.setText("00");
-                textView_s.setText("00");
 
+                if (command == 1) {
+
+                    if (sum > 0) {
+                        sum--;
+
+                        h = sum / 3600;
+                        m = (sum - h * 3600) / 60;
+                        s = sum - h * 3600 - m * 60;
+                        //textView_h.setText(list_h.get(h));
+                        //textView_m.setText(list_m.get(m));
+                        //textView_s.setText(list_s.get(s));
+                        handler.postDelayed(this, 1000);
+                    }
+                }
+                if (command == 3) {
+                    sp_h.setSelection(0, true);
+                    sp_m.setSelection(0, true);
+                    sp_s.setSelection(0, true);
+                    sum = 0;
+                    h = m = s = 0;
+                    textView_h.setText("00");
+                    textView_m.setText("00");
+                    textView_s.setText("00");
+
+                }
             }
         }
 
@@ -199,11 +216,9 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
     public void dialog_warn(){
 
         new  AlertDialog.Builder(context)
-                .setTitle("注意！" )
+                .setTitle("说明" )
                 .setCancelable(false)
-                .setMessage("本功能开启后，会在你玩手机睡着后（锁屏之后）叫醒你\n" +
-                        "由于没有办法保持后台运行，因此使用的方法会导致程序一直监测\n" +
-                        "当你开启了这个功能以后，本应用会处于假死状态。\n请不要点击本应用的任何地方" )
+                .setMessage("本功能开启以后，会监测你的屏幕状态\n我们假设你睡着后手机会锁屏\n那么闹铃会在锁屏以后开始计时")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -218,6 +233,7 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
         new  AlertDialog.Builder(context)
                 .setTitle("提醒" )
                 .setMessage("该醒醒啦qwq" )
+                .setCancelable(false)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -229,9 +245,8 @@ public class WakeupFragment extends Fragment implements View.OnClickListener{
     public void initmediaplayer(){
         mediaPlayer.reset();
         mediaPlayer= MediaPlayer.create(context, R.raw.abc);//重新设置要播放的音频
-
-
     }
+
     public void mediastop(){
         mediaPlayer.stop();
         //mediaPlayer.release();

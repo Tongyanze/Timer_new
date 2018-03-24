@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:textColor="@color/textcolor"/>
-            <RadioButton
+           <!-- <RadioButton
                 android:drawableLeft="@drawable/bt3"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
-                android:textColor="@color/textcolor"/>
+                android:textColor="@color/textcolor"/>-->
         </RadioGroup>
     </LinearLayout>
 

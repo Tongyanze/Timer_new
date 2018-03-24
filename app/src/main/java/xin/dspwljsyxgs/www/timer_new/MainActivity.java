@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_timer.setOnClickListener(this);
         btn_wakeup = (Button) findViewById(R.id.wake_up);
         btn_wakeup.setOnClickListener(this);
-        btn_clock = (Button) findViewById(R.id.clock);
-        btn_clock.setOnClickListener(this);
+        //btn_clock = (Button) findViewById(R.id.clock);
+        //btn_clock.setOnClickListener(this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.frg_right,0);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //replaceFragment(new SaishiFragment());
                 break;
-            case R.id.clock:
+            /*case R.id.clock:
                 if (nowFragment == CLOCK){
                     return;
                 }
@@ -109,19 +109,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //!!!!!!!!!!!!!!!!btn_timer.setImageResource(R.mipmap.click1);
 
                 //replaceFragment(new SaishiFragment());
-                break;
+                break;*/
 
         }
     }
 
 
-    private  void replaceFragment(Fragment fragment){
-
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction transaction=fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_layout,fragment);
-        transaction.commit();
-    }
+//    private  void replaceFragment(Fragment fragment){
+//
+//        FragmentManager fragmentManager=getSupportFragmentManager();
+//        FragmentTransaction transaction=fragmentManager.beginTransaction();
+//        transaction.replace(R.id.fragment_layout,fragment);
+//        transaction.commit();
+//    }
 
 
 
